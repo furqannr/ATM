@@ -8,6 +8,8 @@ import { transferBank } from "./transferBnk.js";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 let pinTries = 3;
 let balanc = 50000;
+let ministatement = { Added: 100000, Credit: 50000 };
+console.log(typeof ministatement);
 function CorrectPin() {
     inquirer
         .prompt([
@@ -33,21 +35,6 @@ function CorrectPin() {
                 console.log("Shouldn't come here");
                 break;
         }
-        // if(answers.choice=="Balance Inquiry")
-        // {
-        //     await balance();
-        // }
-        // else if (answers.choice=="Cash WithDrawl")
-        // {
-        //        await cashWithDrawl();
-        // }
-        // else if (answers.choice=="Online Transfer")
-        // {       await transfer();
-        // }
-        // else
-        // {
-        //     console.log("Should never come here");
-        // }
     });
     function balance() {
         console.log("Balance: " + balanc);
@@ -79,12 +66,7 @@ function CorrectPin() {
                 type: "list",
                 name: "bankChoice",
                 message: "Select the reciever's bank",
-                choices: [
-                    "Allied Bank",
-                    "Habib Bank",
-                    "Meezan Bank",
-                    "United Bank",
-                ],
+                choices: ["Allied Bank", "Habib Bank", "Meezan Bank", "United Bank"],
             },
         ])
             .then((answers) => {
@@ -107,7 +89,6 @@ function CorrectPin() {
             }
         });
     }
-    console.log(balanc);
 }
 function AtmPin() {
     inquirer

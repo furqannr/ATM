@@ -10,7 +10,8 @@ import { transferBank } from "./transferBnk.js";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 let pinTries: number = 3;
 let balanc: number = 50000;
-let ministatement={ Added: 100000, Credit: 50000};
+let ministatement = { Added: 100000, Credit: 50000 };
+console.log(typeof ministatement);
 function CorrectPin() {
   inquirer
     .prompt([
