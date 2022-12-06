@@ -6,7 +6,8 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 let pinTries = 3;
-async function CorrectPin() {
+let balanc = 50000;
+function CorrectPin() {
     inquirer
         .prompt([
         {
@@ -16,19 +17,19 @@ async function CorrectPin() {
             choices: ["Balance Inquiry", "Cash WithDrawl", "Online Transfer"],
         },
     ])
-        .then(async (answers) => {
+        .then((answers) => {
         switch (answers.choice) {
             case "Balance Inquiry":
-                await balance();
+                balance();
                 break;
             case "Cash WithDrawl":
-                await cashWithDrawl();
+                cashWithDrawl();
                 break;
             case "Online Transfer":
-                await transfer();
+                transfer();
                 break;
             default:
-                console.log("NOTHING DONE");
+                console.log("Shouldn't come here");
                 break;
         }
         // if(answers.choice=="Balance Inquiry")
@@ -48,16 +49,33 @@ async function CorrectPin() {
         // }
     });
     function balance() {
-        console.log("Balance xyz");
+        console.log("Balance: " + balanc);
     }
     function cashWithDrawl() {
-        console.log("cashwithdrawl xyz");
+        inquirer
+            .prompt([
+            {
+                type: "input",
+                name: "withdrawal",
+                message: "Kindly enter amount to withdraw",
+            },
+        ])
+            .then(async (answers) => {
+            if (answers.withdrawal > balanc) {
+                console.log(chalk.bgRed("Not Enough Balance"));
+            }
+            else {
+                console.log("Withdrawal Successful");
+                balanc = balanc - answers.withdrawal;
+                console.log("New Balance: " + balanc);
+            }
+        });
     }
     function transfer() {
         console.log("transfer xyz");
     }
 }
-async function AtmPin() {
+function AtmPin() {
     inquirer
         .prompt([
         {
@@ -73,7 +91,7 @@ async function AtmPin() {
         else if (answers.pin != "1111" && pinTries > 0) {
             console.log("Wrong Pin!!! Try Again");
             console.log("Tries left: " + --pinTries);
-            await AtmPin();
+            AtmPin();
         }
         else {
             console.log("Atm blocked. Contact helpline for further details");
@@ -81,3 +99,4 @@ async function AtmPin() {
     });
 }
 AtmPin();
+console.log("End Balance: " + balanc);
