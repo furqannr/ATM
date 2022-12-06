@@ -75,8 +75,35 @@ let balanc:number=50000;
     });
   }
   function transfer() {
-    console.log("transfer xyz");
-  }
+    inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "bankChoice",
+        message: "Select the reciever's bank",
+        choices: ["Allied Bank","Habib Bank","Meezan Bank" ,"United Bank"],
+      },
+    ])
+    .then( (answers) => {
+      switch (answers.bankChoice) {
+        case "Allied Bank":
+           balance();
+          break;
+        case "Habib Bank":
+           cashWithDrawl();
+          break;
+        case "Meezan Bank":
+           transfer();
+          break;
+          case "United Bank":
+            transfer();
+            break;
+        default:
+            console.log("Shouldn't come here");
+          break;
+      }  
+  });
+}
 }
 function AtmPin() {
   inquirer
