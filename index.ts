@@ -5,11 +5,13 @@
 // Create a GitHub repository for the project and submit its URL in the project submission form.
 import inquirer from "inquirer";
 import chalk from "chalk";
+import { transferBank } from "./transferBnk.js";
 
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 let pinTries: number = 3;
-let balanc:number=50000;
- function CorrectPin() {
+let balanc: number = 50000;
+let ministatement={ Added: 100000, Credit: 50000};
+function CorrectPin() {
   inquirer
     .prompt([
       {
@@ -19,92 +21,77 @@ let balanc:number=50000;
         choices: ["Balance Inquiry", "Cash WithDrawl", "Online Transfer"],
       },
     ])
-    .then( (answers) => {
+    .then((answers) => {
       switch (answers.choice) {
         case "Balance Inquiry":
-           balance();
+          balance();
           break;
         case "Cash WithDrawl":
-           cashWithDrawl();
+          cashWithDrawl();
           break;
         case "Online Transfer":
-           transfer();
+          transfer();
           break;
         default:
-            console.log("Shouldn't come here");
+          console.log("Shouldn't come here");
           break;
       }
-    // if(answers.choice=="Balance Inquiry")
-    // {
-    //     await balance();
-    // }
-    // else if (answers.choice=="Cash WithDrawl")
-    // {
-        
-    //        await cashWithDrawl();
-    // }
-    // else if (answers.choice=="Online Transfer")
-    // {       await transfer();       
-    // }
-    // else
-    // {
-    //     console.log("Should never come here");
-    // }
     });
 
   function balance() {
-    console.log("Balance: "+balanc);
+    console.log("Balance: " + balanc);
   }
   function cashWithDrawl() {
     inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "withdrawal",
-        message: "Kindly enter amount to withdraw",
-      },
-    ])
-    .then(async (answers) => {
-      if (answers.withdrawal > balanc) {
-        console.log(chalk.bgRed("Not Enough Balance"));
-      } else {
-        console.log("Withdrawal Successful");
-        balanc=balanc-answers.withdrawal;
-        console.log("New Balance: "+balanc);
-      }
-    });
+      .prompt([
+        {
+          type: "input",
+          name: "withdrawal",
+          message: "Kindly enter amount to withdraw",
+        },
+      ])
+      .then(async (answers) => {
+        if (answers.withdrawal > balanc) {
+          console.log(chalk.bgRed("Not Enough Balance"));
+        } else {
+          console.log("Withdrawal Successful");
+          balanc = balanc - answers.withdrawal;
+          console.log("New Balance: " + balanc);
+        }
+      });
   }
   function transfer() {
     inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "bankChoice",
-        message: "Select the reciever's bank",
-        choices: ["Allied Bank","Habib Bank","Meezan Bank" ,"United Bank"],
-      },
-    ])
-    .then( (answers) => {
-      switch (answers.bankChoice) {
-        case "Allied Bank":
-           balance();
-          break;
-        case "Habib Bank":
-           cashWithDrawl();
-          break;
-        case "Meezan Bank":
-           transfer();
-          break;
-          case "United Bank":
-            transfer();
+      .prompt([
+        {
+          type: "list",
+          name: "bankChoice",
+          message: "Select the reciever's bank",
+          choices: ["Allied Bank", "Habib Bank", "Meezan Bank", "United Bank"],
+        },
+      ])
+      .then((answers) => {
+        switch (answers.bankChoice) {
+          case "Allied Bank":
+            balanc = transferBank(balanc);
             break;
-        default:
+          case "Habib Bank":
+            balanc = transferBank(balanc);
+            break;
+          case "Meezan Bank":
+            balanc = transferBank(balanc);
+            break;
+          case "United Bank":
+            balanc = transferBank(balanc);
+            break;
+          default:
             console.log("Shouldn't come here");
-          break;
-      }  
-  });
+            break;
+        }
+      });
+  }
 }
-}
+
 function AtmPin() {
   inquirer
     .prompt([

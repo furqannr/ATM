@@ -4,6 +4,7 @@
 // Create a GitHub repository for the project and submit its URL in the project submission form.
 import inquirer from "inquirer";
 import chalk from "chalk";
+import { transferBank } from "./transferBnk.js";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 let pinTries = 3;
 let balanc = 50000;
@@ -41,7 +42,7 @@ function CorrectPin() {
         //        await cashWithDrawl();
         // }
         // else if (answers.choice=="Online Transfer")
-        // {       await transfer();       
+        // {       await transfer();
         // }
         // else
         // {
@@ -72,8 +73,41 @@ function CorrectPin() {
         });
     }
     function transfer() {
-        console.log("transfer xyz");
+        inquirer
+            .prompt([
+            {
+                type: "list",
+                name: "bankChoice",
+                message: "Select the reciever's bank",
+                choices: [
+                    "Allied Bank",
+                    "Habib Bank",
+                    "Meezan Bank",
+                    "United Bank",
+                ],
+            },
+        ])
+            .then((answers) => {
+            switch (answers.bankChoice) {
+                case "Allied Bank":
+                    balanc = transferBank(balanc);
+                    break;
+                case "Habib Bank":
+                    balanc = transferBank(balanc);
+                    break;
+                case "Meezan Bank":
+                    balanc = transferBank(balanc);
+                    break;
+                case "United Bank":
+                    balanc = transferBank(balanc);
+                    break;
+                default:
+                    console.log("Shouldn't come here");
+                    break;
+            }
+        });
     }
+    console.log(balanc);
 }
 function AtmPin() {
     inquirer
@@ -99,4 +133,3 @@ function AtmPin() {
     });
 }
 AtmPin();
-console.log("End Balance: " + balanc);
