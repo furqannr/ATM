@@ -6,12 +6,17 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 import { users } from "./Users.js";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
+//console.log(userCheck(users.at(1)?.fullName=="fsfa"));
+let accountTitles = [];
+for (const key in users) {
+    accountTitles.push(users[key].fullName);
+}
 function userCheck() {
     inquirer.prompt([{
             type: "list",
             name: "users",
             message: "Kindly click your name",
-            choices: [users]
+            choices: accountTitles
         }]);
 }
 userCheck();

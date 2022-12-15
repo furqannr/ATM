@@ -10,13 +10,17 @@ import { users } from "./Users.js";
 
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 //console.log(userCheck(users.at(1)?.fullName=="fsfa"));
+let accountTitles:string[]=[];
+for (const key in users) {
+  accountTitles.push(users[key].fullName);
+}
 function userCheck()
 {
   inquirer.prompt([{
     type:"list",
     name:"users",
     message:"Kindly click your name",
-    choices:[]
+    choices:accountTitles
   }])
 }
 userCheck();

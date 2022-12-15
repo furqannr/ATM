@@ -6,5 +6,4 @@ function createUser() {
 }
 ;
 let f = createUser();
-console.log(users);
 export { users };

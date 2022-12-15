@@ -19,6 +19,5 @@ function createUser(): newUser {
     return furqan;
 };
 let f= createUser();
-console.log(users);
-users.find("furqan");
+
 export {users};
