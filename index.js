@@ -6,9 +6,9 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 import { users } from "./Users.js";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
-//console.log(userCheck(users.at(1)?.fullName=="fsfa"));
-let accountTitles = [];
-for (const key in users) {
+console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of full names"));
+let accountTitles = []; // for users names
+for (const key in users) { //Pushing each user name in array for selection
     accountTitles.push(users[key].fullName);
 }
 function userCheck() {

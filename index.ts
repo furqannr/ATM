@@ -6,24 +6,11 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import { transferBank } from "./transferBnk.js";
-import { users } from "./Users.js";
+//import { users } from "./Users.js";
 
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
-//console.log(userCheck(users.at(1)?.fullName=="fsfa"));
-let accountTitles:string[]=[];
-for (const key in users) {
-  accountTitles.push(users[key].fullName);
-}
-function userCheck()
-{
-  inquirer.prompt([{
-    type:"list",
-    name:"users",
-    message:"Kindly click your name",
-    choices:accountTitles
-  }])
-}
-userCheck();
+console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of full names"));
+
 // let pinTries: number = 3;
 // let balanc: number = 50000;
 // let ministatement = { Added: 100000, Credit: 50000 };
