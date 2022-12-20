@@ -4,8 +4,8 @@ type newUser= {
     age:number,
     pin:number,
     balance:number
-    debit?:[],
-    credit?:[],
+    debit?:number[],
+    credit?:number[],
     ministatement:{
         debit?:[number],
         credit?:[number],

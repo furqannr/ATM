@@ -1,25 +1,10 @@
 // This somewhat complex TypeScript/Node.js project is a console-based application. When the system starts the user is prompted with
 // a user id and user pin. After entering the details successfully, the ATM functionalities are unlocked. All the user data is
 // generated randomly.
-// Create a GitHub repository for the project and submit its URL in the project submission form.
-import inquirer from "inquirer";
 import chalk from "chalk";
-import { users } from "./Users.js";
+//import { users } from "./Users.js";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of full names"));
-let accountTitles = []; // for users names
-for (const key in users) { //Pushing each user name in array for selection
-    accountTitles.push(users[key].fullName);
-}
-function userCheck() {
-    inquirer.prompt([{
-            type: "list",
-            name: "users",
-            message: "Kindly click your name",
-            choices: accountTitles
-        }]);
-}
-userCheck();
 // let pinTries: number = 3;
 // let balanc: number = 50000;
 // let ministatement = { Added: 100000, Credit: 50000 };
