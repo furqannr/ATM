@@ -3,8 +3,11 @@
 // generated randomly.
 import chalk from "chalk";
 //import { users } from "./Users.js";
+import { userCheck } from "./userAuthentication.js";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of full names"));
+let user = await userCheck();
+console.log(user);
 // let pinTries: number = 3;
 // let balanc: number = 50000;
 // let ministatement = { Added: 100000, Credit: 50000 };

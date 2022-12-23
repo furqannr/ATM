@@ -6,13 +6,24 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import { transferBank } from "./transferBnk.js";
-//import { users } from "./Users.js";
+import { users } from "./Users.js";
+import { userCheck } from "./userAuthentication.js";
 
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
 console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of full names"));
+let user= await userCheck();
+console.log(user);
+let index=-1;
+//let in = -1;
 
-// let pinTries: number = 3;
-// let balanc: number = 50000;
+for (const key in users) {//Pushing each user name in array for selection
+    if(users[key].fullName===user)
+    {
+     // in=key;  
+    }
+}
+ let pinTries: number = 3;
+ //let balanc: number = users[in].balance;
 // let ministatement = { Added: 100000, Credit: 50000 };
 // console.log(typeof ministatement);
 // function CorrectPin() {
