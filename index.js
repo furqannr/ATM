@@ -2,42 +2,35 @@
 // a user id and user pin. After entering the details successfully, the ATM functionalities are unlocked. All the user data is
 // generated randomly.
 import chalk from "chalk";
-//import { users } from "./Users.js";
 import { userCheck } from "./userAuthentication.js";
+import { Menu } from "./Menu.js";
+import { balance } from "./BalanceInquiry.js";
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
-console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of full names"));
+console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of account num"));
 let user = await userCheck();
-console.log(user);
-// let pinTries: number = 3;
-// let balanc: number = 50000;
-// let ministatement = { Added: 100000, Credit: 50000 };
-// console.log(typeof ministatement);
-// function CorrectPin() {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "list",
-//         name: "choice",
-//         message: "Select the operation from below",
-//         choices: ["Balance Inquiry", "Cash WithDrawl", "Online Transfer"],
-//       },
-//     ])
-//     .then((answers) => {
-//       switch (answers.choice) {
-//         case "Balance Inquiry":
-//           balance();
-//           break;
-//         case "Cash WithDrawl":
-//           cashWithDrawl();
-//           break;
-//         case "Online Transfer":
-//           transfer();
-//           break;
-//         default:
-//           console.log("Shouldn't come here");
-//           break;
-//       }
-//     });
+//console.log(user);
+if (typeof user === "string") {
+    let menuChoice = await Menu();
+    console.log(`${menuChoice} + ${typeof menuChoice}`);
+    switch (menuChoice) {
+        case "Balance Inquiry":
+            // console.log(user.balance);  
+            balance(user);
+            break;
+        case "Cash WithDrawl":
+            break;
+        case "Online Transfer":
+            break;
+        default:
+            console.log("Shouldn't come here");
+            break;
+    }
+}
+// .then((answers) => {
+//     
+//   });
+// let balanc: number = user?.balance;
+//
 //   function balance() {
 //     console.log("Balance: " + balanc);
 //   }
@@ -90,7 +83,7 @@ console.log(user);
 //         }
 //       });
 //   }
-// }
+// 
 // function AtmPin() {
 //   inquirer
 //     .prompt([

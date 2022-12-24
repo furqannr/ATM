@@ -8,72 +8,43 @@ import chalk from "chalk";
 import { transferBank } from "./transferBnk.js";
 import { users } from "./Users.js";
 import { userCheck } from "./userAuthentication.js";
+import { Menu } from "./Menu.js";
+import { balance } from "./BalanceInquiry.js";
+import { cashWithdrawal } from "./CashWithdrawal.js";
 
 console.log(chalk.bgBlack("Welcome to XYZ ATM"));
-console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of full names"));
+console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of account num"));
+
 let user= await userCheck();
-console.log(user);
-let index=-1;
-//let in = -1;
-
-for (const key in users) {//Pushing each user name in array for selection
-    if(users[key].fullName===user)
-    {
-     // in=key;  
-    }
+//console.log(user);
+if(typeof user === "string" )
+{
+let menuChoice= await Menu();
+//console.log(`${menuChoice} + ${typeof menuChoice}`);
+switch (menuChoice) {
+          case "Balance Inquiry":
+         // console.log(user.balance);  
+          balance(user);
+            break;
+          case "Cash WithDrawl":
+            
+            break;
+          case "Online Transfer":
+            
+            break;
+          default:
+            console.log("Shouldn't come here");
+            break;
+        }
 }
- let pinTries: number = 3;
- //let balanc: number = users[in].balance;
-// let ministatement = { Added: 100000, Credit: 50000 };
-// console.log(typeof ministatement);
-// function CorrectPin() {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "list",
-//         name: "choice",
-//         message: "Select the operation from below",
-//         choices: ["Balance Inquiry", "Cash WithDrawl", "Online Transfer"],
-//       },
-//     ])
-//     .then((answers) => {
-//       switch (answers.choice) {
-//         case "Balance Inquiry":
-//           balance();
-//           break;
-//         case "Cash WithDrawl":
-//           cashWithDrawl();
-//           break;
-//         case "Online Transfer":
-//           transfer();
-//           break;
-//         default:
-//           console.log("Shouldn't come here");
-//           break;
-//       }
-//     });
+// .then((answers) => {
+//     
+//   });
 
+// let balanc: number = user?.balance;
+//
 //   function balance() {
 //     console.log("Balance: " + balanc);
-//   }
-//   function cashWithDrawl() {
-//     inquirer
-//       .prompt([
-//         {
-//           type: "input",
-//           name: "withdrawal",
-//           message: "Kindly enter amount to withdraw",
-//         },
-//       ])
-//       .then(async (answers) => {
-//         if (answers.withdrawal > balanc) {
-//           console.log(chalk.bgRed("Not Enough Balance"));
-//         } else {
-//           console.log("Withdrawal Successful");
-//           balanc = balanc - answers.withdrawal;
-//           console.log("New Balance: " + balanc);
-//         }
-//       });
 //   }
 //   function transfer() {
 //     inquirer
@@ -105,7 +76,7 @@ for (const key in users) {//Pushing each user name in array for selection
 //         }
 //       });
 //   }
-// }
+// 
 
 // function AtmPin() {
 //   inquirer
