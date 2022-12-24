@@ -19,6 +19,7 @@ let user= await userCheck();
 //console.log(user);
 if(typeof user === "string" )
 {
+do {   
 let menuChoice= await Menu();
 //console.log(`${menuChoice} + ${typeof menuChoice}`);
 switch (menuChoice) {
@@ -30,13 +31,21 @@ switch (menuChoice) {
           //console.log("New Balance: " + users[Number(user)].balance);
             break;
           case "Online Transfer":
-        await onlineTransfer(user);
+         onlineTransfer(user);
+        //console.log("New Balance: " + users[Number(user)].balance);
             break;
           default:
             console.log("Shouldn't come here");
             break;
         }
-}
+        var choice = await inquirer.prompt(
+            {
+                type: "input",
+                name: "qa",
+                message: chalk.bgGrey("Do you want to play again? Press Y or y to continue")
+            })          }
+ while (choice.qa == 'yes'|| choice.qa == 'Yes'||choice.qa == 'YES'||choice.qa == 'y'||choice.qa == 'Y');
+    }
 //   function transfer() {
 //     
 // function AtmPin() {

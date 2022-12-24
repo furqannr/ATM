@@ -1,7 +1,8 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
-function transferBank(bal) {
-    inquirer
+import { users } from "./Users.js";
+async function transferBank(newUser) {
+    await inquirer
         .prompt([
         {
             type: "input",
@@ -10,13 +11,12 @@ function transferBank(bal) {
         },
     ])
         .then(async (answers) => {
-        if (answers.send > bal) {
+        if (answers.send > users[newUser].balance) {
             console.log(chalk.bgRed("Not Enough Balance"));
         }
         else {
-            bal = bal - answers.send;
+            users[newUser].balance = users[newUser].balance - answers.send;
         }
     });
-    return bal;
 }
 export { transferBank };

@@ -3,7 +3,7 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 function transferBank(bal:number)
 {
-    inquirer
+ inquirer
 .prompt([
   {
     type: "input",

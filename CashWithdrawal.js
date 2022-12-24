@@ -19,7 +19,6 @@ async function cashWithdrawal(index) {
         else {
             console.log("Withdrawal Successful");
             users[Number(index)].balance = users[Number(index)].balance - answers.withdrawal;
-            console.log("New Balance: " + users[Number(index)].balance);
         }
     });
 }
