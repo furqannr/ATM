@@ -16,16 +16,16 @@ async function onlineTransfer(index) {
         .then((answers) => {
         switch (answers.bankChoice) {
             case "Allied Bank":
-                transferBank(users[Number(index)]);
+                users[Number(index)].balance = transferBank(users[Number(index)].balance);
                 break;
             case "Habib Bank":
-                transferBank(users[Number(index)]);
+                users[Number(index)].balance = transferBank(users[Number(index)].balance);
                 break;
             case "Meezan Bank":
-                transferBank(users[Number(index)]);
+                users[Number(index)].balance = transferBank(users[Number(index)].balance);
                 break;
             case "United Bank":
-                transferBank(users[Number(index)]);
+                users[Number(index)].balance = transferBank(users[Number(index)].balance);
                 break;
             default:
                 console.log("Shouldn't come here");

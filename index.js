@@ -26,7 +26,7 @@ if (typeof user === "string") {
                 //console.log("New Balance: " + users[Number(user)].balance);
                 break;
             case "Online Transfer":
-                await onlineTransfer(user);
+                onlineTransfer(user);
                 //console.log("New Balance: " + users[Number(user)].balance);
                 break;
             default:
