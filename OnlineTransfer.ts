@@ -3,9 +3,10 @@ export {onlineTransfer};
 import { users } from "./Users.js";
 import chalk from "chalk";
 import { transferBank } from "./transferBnk.js";
+
 async function onlineTransfer(index:string) {
     //console.log("Balance: " + users[Number(index)].balance );
-    await inquirer
+  let aw=  await inquirer
           .prompt([
             {
               type: "list",
@@ -13,25 +14,25 @@ async function onlineTransfer(index:string) {
               message: "Select the reciever's bank",
               choices: ["Allied Bank", "Habib Bank", "Meezan Bank", "United Bank"],
             },
-          ])
-          .then((answers) => {
-            switch (answers.bankChoice) {
+          ]);
+          //.then((answers) => {
+            switch (aw.bankChoice) {
               case "Allied Bank":
-                users[Number(index)].balance= transferBank(users[Number(index)].balance);
+                await transferBank(Number(index));
                 break;
               case "Habib Bank":
-                users[Number(index)].balance= transferBank(users[Number(index)].balance);
+                 await transferBank(Number(index));
                                break;
               case "Meezan Bank":
-                users[Number(index)].balance= transferBank(users[Number(index)].balance);
-                 break;
+                await transferBank(Number(index));
+                break;
               case "United Bank":
-                users[Number(index)].balance= transferBank(users[Number(index)].balance);
+                await transferBank(Number(index));
                 break;
               default:
                 console.log("Shouldn't come here");
                 break;
             }
-          });
-      console.log(users[Number(index)].balance);
+          //});
+     // console.log(users[Number(index)].balance);
         }

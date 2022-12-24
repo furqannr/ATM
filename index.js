@@ -9,39 +9,59 @@ import { Menu } from "./Menu.js";
 import { balance } from "./BalanceInquiry.js";
 import { cashWithdrawal } from "./CashWithdrawal.js";
 import { onlineTransfer } from "./OnlineTransfer.js";
-console.log(chalk.bgBlack("Welcome to XYZ ATM"));
-console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of account num"));
-let user = await userCheck();
-//console.log(user);
-if (typeof user === "string") {
+async function welcome() {
     do {
-        let menuChoice = await Menu();
-        //console.log(`${menuChoice} + ${typeof menuChoice}`);
-        switch (menuChoice) {
-            case "Balance Inquiry":
-                balance(user);
-                break;
-            case "Cash WithDrawl":
-                await cashWithdrawal(user);
-                //console.log("New Balance: " + users[Number(user)].balance);
-                break;
-            case "Online Transfer":
-                onlineTransfer(user);
-                //console.log("New Balance: " + users[Number(user)].balance);
-                break;
-            default:
-                console.log("Shouldn't come here");
-                break;
+        console.log(chalk.bgBlack("Welcome to XYZ ATM"));
+        console.log(chalk.bgRed("Card num is checked in atm machines, here we will go on basis of account num"));
+        console.log(chalk.bgRed(`For Testing:Enter Account 111 and password 1111`));
+        let user = await userCheck();
+        //console.log(user);
+        if (typeof user === "string") {
+            do {
+                let menuChoice = await Menu();
+                //console.log(`${menuChoice} + ${typeof menuChoice}`);
+                switch (menuChoice) {
+                    case "Balance Inquiry":
+                        balance(user);
+                        break;
+                    case "Cash WithDrawl":
+                        await cashWithdrawal(user);
+                        //console.log("New Balance: " + users[Number(user)].balance);
+                        break;
+                    case "Online Transfer":
+                        await onlineTransfer(user);
+                        //console.log("New Balance: " + users[Number(user)].balance);
+                        break;
+                    case "Operations Completed":
+                        await welcome();
+                        break;
+                    default:
+                        console.log("Shouldn't come here");
+                        break;
+                }
+                var choice = await inquirer.prompt({
+                    type: "input",
+                    name: "qa",
+                    message: chalk.bgGrey("Do you want to perform another transaction? Press Y or y for YES"),
+                });
+            } while (choice.qa == "yes" ||
+                choice.qa == "Yes" ||
+                choice.qa == "YES" ||
+                choice.qa == "y" ||
+                choice.qa == "Y");
         }
-        var choice = await inquirer.prompt({
+        var ch = await inquirer.prompt({
             type: "input",
-            name: "qa",
-            message: chalk.bgGrey("Do you want to play again? Press Y or y to continue")
+            name: "a",
+            message: chalk.bgGrey("Do you want to check another account? Press Y or y for YES"),
         });
-    } while (choice.qa == 'yes' || choice.qa == 'Yes' || choice.qa == 'YES' || choice.qa == 'y' || choice.qa == 'Y');
+    } while (ch.a == "yes" ||
+        ch.a == "Yes" ||
+        ch.a == "YES" ||
+        ch.a == "y" ||
+        ch.a == "Y");
 }
-//   function transfer() {
-//     
+welcome();
 // function AtmPin() {
 //   inquirer
 //     .prompt([

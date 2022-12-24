@@ -7,7 +7,7 @@ async function Menu() {
             type: "list",
             name: "choice",
             message: "Select the operation from below",
-            choices: ["Balance Inquiry", "Cash WithDrawl", "Online Transfer"],
+            choices: ["Balance Inquiry", "Cash WithDrawl", "Online Transfer", "Operations Completed"],
         },
     ]);
     return menuCh.choice;
