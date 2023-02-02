@@ -1,6 +1,6 @@
 {
-  "name": "atm",
-  "version": "1.0.0",
+  "name": "atm_furqannr",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -14,7 +14,7 @@
   "dependencies": {
     "@types/chalk": "^2.2.0",
     "@types/inquirer": "^9.0.3",
-    "chalk": "^5.1.2",
+    "chalk": "^5.2.0",
     "inquirer": "^9.1.4"
   }
 }
